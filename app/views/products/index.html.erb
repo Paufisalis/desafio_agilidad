@@ -1,0 +1,21 @@
+<h2>Productos</h2>
+
+
+<% @products.each_slice(3) do |products| %>
+<div class="card-deck">
+<% products.each do |product| %>
+<div class="card">
+  <img src="<%= product.photo %>" class="card-img-top" alt="producto">
+  <div class="card-body">
+    <h5 class="card-title"><%= product.name %></h5>
+    <p class="card-text"><%= number_to_currency product.price %>
+      <%= link_to "Comprar", orders_path(product), class: 'btn btn-warning', method: :post%></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><%= time_ago_in_words product.created_at %></small>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<% end %>
